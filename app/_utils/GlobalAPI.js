@@ -1,0 +1,160 @@
+import request, { gql } from "graphql-request";
+
+const MASTER_URL =
+  "https://api-ap-south-1.hygraph.com/v2/" +
+  process.env.NEXT_PUBLIC_HYGRAPH_API_KEY +
+  "/master";
+
+const getAllCourseList = async () => {
+  const query = gql`
+    query MyQuery {
+      courseLists(first: 20, orderBy: publishedAt_DESC) {
+        author
+        name
+        id
+        free
+        description
+        demoUrl
+        banner {
+          url
+        }
+        chapter {
+          ... on Chapter {
+            id
+            name
+            video {
+              url
+            }
+          }
+        }
+        totalChapters
+        sourceCode
+        tag
+        slug
+      }
+    }
+  `;
+
+  const result = await request(MASTER_URL, query);
+
+  return result;
+};
+
+const getSideBanner = async () => {
+  const query = gql`
+    query MyQuery {
+      sideBanners {
+        id
+        name
+        banner {
+          url
+        }
+        url
+      }
+    }
+  `;
+
+  const result = await request(MASTER_URL, query);
+
+  return result;
+};
+const getCourseById = async (courseId) => {
+  const query =
+    gql`
+    query MyQuery {
+      courseList(where: { slug: "` +
+    courseId +
+    `" }) {
+        name
+        author
+        banner {
+          url
+        }
+        chapter {
+          ... on Chapter {
+            id
+            name
+            video {
+              url
+            }
+          }
+        }
+        demoUrl
+        description
+        free
+        id
+        name
+        slug
+        sourceCode
+        tag
+        totalChapters
+      }
+    }
+  `;
+
+  const result = await request(MASTER_URL, query);
+
+  return result;
+};
+
+const enrollToCourse = async (courseId, email) => {
+  const query =
+    gql`
+    mutation MyMutation {
+      createUserEnrollCourse(
+        data: {courseId: "` +
+    courseId +
+    `", userEmail: "` +
+    email +
+    `", courseList: {connect: {slug: "` +
+    courseId +
+    `"}}}
+      ) {
+        id
+      }
+    publishManyUserEnrollCoursesConnection{
+        edges{
+          node{
+            id
+          }
+        }
+      }
+    }
+  `;
+
+  const result = await request(MASTER_URL, query);
+
+  return result;
+};
+
+const checkUserEnrolledToCourse = async (courseId, email) => {
+  const query =
+    gql`
+    query MyQuery {
+      userEnrollCourses(
+        where: {
+          courseId: "` +
+    courseId +
+    `"
+          userEmail: "` +
+    email +
+    `"
+        }
+      ) {
+        id
+      }
+    }
+  `;
+
+  const result = await request(MASTER_URL, query);
+
+  return result;
+};
+
+export default {
+  getAllCourseList,
+  getSideBanner,
+  getCourseById,
+  enrollToCourse,
+  checkUserEnrolledToCourse,
+};
