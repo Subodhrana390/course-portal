@@ -20,6 +20,7 @@ function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
         toast("User Enrolled Successfully", {
           description: "User Enrolled to this course",
         });
+        s;
         router.push("/watch-course/" + resp.createUserEnrollCourse.id);
       }
     });

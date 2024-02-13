@@ -42,7 +42,7 @@ const CourseList = () => {
         {courseList?.length > 0
           ? courseList.map((item, index) => (
               <Link href={`/course-preview/` + item.slug}>
-                <div key={index}>
+                <div key={item.slug}>
                   <CourseItem course={item} />
                 </div>
               </Link>
