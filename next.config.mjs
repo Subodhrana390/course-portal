@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ["media.graphassets.com"],
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 export default nextConfig;
