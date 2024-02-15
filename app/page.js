@@ -14,6 +14,7 @@ export default function Home() {
       isLoaded && router.push("/courses");
     }
   }, [user]);
+
   return (
     <>
       <header>

@@ -29,7 +29,6 @@ function WatchCourse({ params }) {
 
   const onChapterComplete = (chapterId) => {
     GlobalAPI.markChapterCompleted(params.enrollId, chapterId).then((resp) => {
-      console.log(resp);
       if (resp) {
         toast("Chapter Mark as Completed");
         getUserEnrolledCourseDetails();

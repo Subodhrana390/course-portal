@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import GlobalAPI from "@/app/_utils/GlobalAPI";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { UserMemberContext } from "@/app/_context/UserMemberContext";
 
 function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
-  const membership = false;
   const { user } = useUser();
   const router = useRouter();
+  const { isMember } = useContext(UserMemberContext);
 
   const onEnrollCourse = () => {
     GlobalAPI.enrollToCourse(
@@ -20,7 +21,6 @@ function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
         toast("User Enrolled Successfully", {
           description: "User Enrolled to this course",
         });
-        s;
         router.push("/watch-course/" + resp.createUserEnrollCourse.id);
       }
     });
@@ -30,7 +30,7 @@ function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
     <div className="p-3 text-center rounded-sm bg-primary flex flex-col gap-3">
       <h2 className="text-[22px] font-bold text-white">Enroll to the Course</h2>
       {/* User has Membership and Already Login  */}
-      {user && (membership || courseInfo.free) && !isUserAlreadyEnrolled ? (
+      {user && (isMember || courseInfo.free) && !isUserAlreadyEnrolled ? (
         <div className="flex flex-col gap-3 mt-3">
           <h2 className="text-white font-light">
             Enroll Now to Start Learning and Building the project
@@ -61,7 +61,10 @@ function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
             <h2 className="text-white font-light">
               Buy Monthly Membership and get Access to all Courses
             </h2>
-            <Button className="bg-white text-primary hover:bg-white hover:text-primary">
+            <Button
+              className="bg-white text-primary hover:bg-white hover:text-primary"
+              href="/codingIndia-pro"
+            >
               Buy Membership Just $2.99
             </Button>
           </div>

@@ -19,7 +19,6 @@ function Dashboard() {
     GlobalAPI.getUserAllEnrolledCourseList(
       user.primaryEmailAddress.emailAddress
     ).then((resp) => {
-      console.log(resp);
       setUserEnrolledCourses(resp.userEnrollCourses);
     });
   };

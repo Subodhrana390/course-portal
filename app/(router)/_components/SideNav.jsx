@@ -8,7 +8,7 @@ import {
   MailIcon,
   X,
 } from "lucide-react";
-import Logo from "../../../public/next.svg";
+import Logo from "../../../public/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,7 +17,6 @@ import { useUser } from "@clerk/nextjs";
 
 function SideNav(props) {
   const { user } = useUser();
-  const { toggleSideNav, isSideNavOpen } = props;
   const menu = [
     {
       id: 8,
@@ -44,7 +43,7 @@ function SideNav(props) {
       id: 3,
       name: "Membership",
       icon: BadgeIcon,
-      path: "/membership",
+      path: "/codingIndia-pro",
       auth: true,
     },
     { id: 4, name: "Store", icon: LayoutGrid, path: "/store", auth: true },
@@ -58,16 +57,22 @@ function SideNav(props) {
   ];
 
   const path = usePathname();
-  useEffect(() => {}, []);
 
   return (
     <div
       className={` ${
         props.isSideNavOpen ? "block" : "hidden"
-      } md:block p-5 bg-white shadow-sm border transition-display duration-500 ease-linear h-screen`}
+      } md:block p-5 bg-white shadow-sm border transition-display duration-500 ease-linear h-screen `}
     >
       <div className="flex gap-2">
-        <Image src={Logo} alt="logo" width={170} height={80} />
+        <Image
+          src={Logo}
+          alt="logo"
+          width={170}
+          height={80}
+          className="h-20 w-20 block"
+        />
+
         <X className="md:hidden" onClick={props.toggleSideNav} />
       </div>
       <hr className="mt-7" />
