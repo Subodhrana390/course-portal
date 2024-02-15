@@ -12,10 +12,9 @@ import Logo from "../../../public/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 
-function SideNav(props) {
+function SideNav({ isSideNavOpen, toggleSideNav }) {
   const { user } = useUser();
   const menu = [
     {
@@ -57,11 +56,10 @@ function SideNav(props) {
   ];
 
   const path = usePathname();
-
   return (
     <div
       className={` ${
-        props.isSideNavOpen ? "block" : "hidden"
+        isSideNavOpen ? "block" : "hidden"
       } md:block p-5 bg-white shadow-sm border transition-display duration-500 ease-linear h-screen `}
     >
       <div className="flex gap-2">
@@ -73,7 +71,7 @@ function SideNav(props) {
           className="h-20 w-20 block"
         />
 
-        <X className="md:hidden" onClick={props.toggleSideNav} />
+        <X className="md:hidden" onClick={toggleSideNav} />
       </div>
       <hr className="mt-7" />
       {/* Menulist */}

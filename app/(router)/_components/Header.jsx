@@ -4,14 +4,14 @@ import { UserButton, useUser } from "@clerk/nextjs";
 import { BellDot, Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-function Header(props) {
+function Header({ toggleSideNav, isSideNavOpen }) {
   const { user, isLoaded } = useUser();
   return (
     <div className="pl-12 pr-4 py-4 md:p-4 bg-white flex justify-between">
-      {!props.isSideNavOpen ? (
+      {!isSideNavOpen ? (
         <Menu
           className="absolute top-5 left-3 z-10 md:hidden"
-          onClick={props.toggleSideNav}
+          onClick={toggleSideNav}
         />
       ) : (
         ""
