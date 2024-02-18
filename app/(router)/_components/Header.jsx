@@ -19,7 +19,7 @@ function Header({ toggleSideNav, isSideNavOpen }) {
 
       {/* Search Bar  */}
       <div className=" flex gap-2 border p-2 rounded-md">
-        <Search className="h-5 w-5" />
+        <Search className="h-5 w-1 md:w-5 " />
         <input
           type="search"
           name=""
@@ -35,7 +35,7 @@ function Header({ toggleSideNav, isSideNavOpen }) {
           <UserButton afterSignOutUrl="/courses" />
         ) : (
           <Link href={"/sign-in"}>
-            <Button>Get Started</Button>
+            <Button className="hidden md:block">Get Started</Button>
           </Link>
         )}
       </div>

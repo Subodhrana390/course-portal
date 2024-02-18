@@ -30,10 +30,14 @@ function layout({ children }) {
 
   return (
     <div>
-      <div className="md:w-64 md:block fixed">
-        <SideNav toggleSideNav={toggleSideNav} isSideNavOpen={isSideNavOpen} />
+      <div className="md:w-64 md:block fixed z-10">
+        <SideNav
+          toggleSideNav={toggleSideNav}
+          isSideNavOpen={isSideNavOpen}
+          setIsSideNavOpen={setIsSideNavOpen}
+        />
       </div>
-      <div className="${} md:ml-64">
+      <div className="${} md:ml-64 z-1">
         <Header toggleSideNav={toggleSideNav} isSideNavOpen={isSideNavOpen} />
         {children}
       </div>

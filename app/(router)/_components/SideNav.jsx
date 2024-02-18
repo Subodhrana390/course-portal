@@ -13,8 +13,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
-function SideNav({ isSideNavOpen, toggleSideNav }) {
+function SideNav({ isSideNavOpen, toggleSideNav, setIsSideNavOpen }) {
   const { user } = useUser();
   const menu = [
     {
@@ -62,7 +63,7 @@ function SideNav({ isSideNavOpen, toggleSideNav }) {
         isSideNavOpen ? "block" : "hidden"
       } md:block p-5 bg-white shadow-sm border transition-display duration-500 ease-linear h-screen `}
     >
-      <div className="flex gap-2">
+      <div className="flex items-center gap-2">
         <Image
           src={Logo}
           alt="logo"
@@ -70,6 +71,7 @@ function SideNav({ isSideNavOpen, toggleSideNav }) {
           height={80}
           className="h-20 w-20 block"
         />
+        <h1 className="text-[24px] font-bold text-primary">Coding India</h1>
 
         <X className="md:hidden" onClick={toggleSideNav} />
       </div>
@@ -84,6 +86,7 @@ function SideNav({ isSideNavOpen, toggleSideNav }) {
                   key={index}
                   className={`group flex gap-3 mt-1 p-3 text-[18px] items-center text-gray-500 cursor-pointer hover:bg-primary hover:text-white rounded-md transition-all ease-in-out duration-200
               ${path.includes(item.path) && "bg-primary text-white"}`}
+                  onClick={() => setIsSideNavOpen(!isSideNavOpen)}
                 >
                   <item.icon className="group-hover:animate-bounce" />
                   {item.name}
@@ -92,6 +95,9 @@ function SideNav({ isSideNavOpen, toggleSideNav }) {
             )
         )}
       </div>
+      <Link href={"/sign-in"}>
+        <Button className="block md:hidden">Get Started</Button>
+      </Link>
     </div>
   );
 }

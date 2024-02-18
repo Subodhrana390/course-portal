@@ -322,6 +322,8 @@ const checkForMembership = async (email) => {
   return result;
 };
 
+
+
 export default {
   getAllCourseList,
   getSideBanner,

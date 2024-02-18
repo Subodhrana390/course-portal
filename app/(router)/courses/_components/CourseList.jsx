@@ -9,9 +9,12 @@ import {
 } from "@/components/ui/select";
 import CourseItem from "./CourseItem";
 import Link from "next/link";
+import { list } from "postcss";
 
 const CourseList = () => {
   const [courseList, setCourseList] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("all");
+
   useEffect(() => {
     getAllCourses();
   }, []);
@@ -26,14 +29,18 @@ const CourseList = () => {
     <div className="p-5 bg-white rounded-lg mt-3">
       <div className="flex items-center justify-between">
         <div className="text-[20px] font-bold text-primary">All Courses</div>
-        <Select>
+        <Select
+          onValueChange={(value) => {
+            setSelectedFilter(value);
+          }}
+        >
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Filter" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="light">All</SelectItem>
-            <SelectItem value="dark">Paid</SelectItem>
-            <SelectItem value="system">Free</SelectItem>
+            <SelectItem value="all">All</SelectItem>
+            <SelectItem value="paid">Paid</SelectItem>
+            <SelectItem value="free">Free</SelectItem>
           </SelectContent>
         </Select>
       </div>

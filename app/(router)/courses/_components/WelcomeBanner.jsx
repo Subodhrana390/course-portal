@@ -4,7 +4,13 @@ import React from "react";
 function WelcomeBanner() {
   return (
     <div className="flex gap-5 items-center bg-white rounded-xl p-5">
-      <Image src="/Banner.png" width={100} height={100} alt="banner" />
+      <Image
+        src="/Banner.png"
+        width={100}
+        height={100}
+        alt="banner"
+        className="w-auto h-auto"
+      />
       <div>
         <h2 className="font-bold text-[27px]">
           Welcome to

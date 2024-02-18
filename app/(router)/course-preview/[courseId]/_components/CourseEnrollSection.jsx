@@ -61,12 +61,11 @@ function CourseEnrollSection({ courseInfo, isUserAlreadyEnrolled }) {
             <h2 className="text-white font-light">
               Buy Monthly Membership and get Access to all Courses
             </h2>
-            <Button
-              className="bg-white text-primary hover:bg-white hover:text-primary"
-              href="/codingIndia-pro"
-            >
-              Buy Membership Just $2.99
-            </Button>
+            <Link href={"/codingIndia-pro"}>
+              <Button className="bg-white text-primary hover:bg-white hover:text-primary">
+                Buy Membership Just $2.99
+              </Button>
+            </Link>
           </div>
         )
       )}
