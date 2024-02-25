@@ -18,7 +18,10 @@ function layout({ children }) {
   const checkUserMembership = () => {
     GlobalAPI.checkForMembership(user.primaryEmailAddress.emailAddress).then(
       (resp) => {
-        if (resp?.memberships?.length > 0) {
+        if (
+          resp?.memberships?.length > 0 &&
+          resp?.memberships[0]?.active == true
+        ) {
           setIsMember(true);
         }
       }

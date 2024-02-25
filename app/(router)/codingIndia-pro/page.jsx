@@ -13,20 +13,7 @@ function CodingIndiaPro() {
   const [loader, setLoader] = useState(false);
   const { user } = useUser();
 
-  useEffect(() => {
-    user && checkUserMembership();
-  }, [user]);
-
-  const { isMember, setIsMember } = useContext(UserMemberContext);
-  const checkUserMembership = () => {
-    GlobalAPI.checkForMembership(user.primaryEmailAddress.emailAddress).then(
-      (resp) => {
-        if (resp?.memberships?.length > 0) {
-          setIsMember(true);
-        }
-      }
-    );
-  };
+  const { isMember } = useContext(UserMemberContext);
 
   const createSubscription = async (planId) => {
     setLoader(true);

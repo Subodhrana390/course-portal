@@ -313,6 +313,7 @@ const checkForMembership = async (email) => {
         email
         paymentId
         createdAt
+        active
       }
     }
   `;
