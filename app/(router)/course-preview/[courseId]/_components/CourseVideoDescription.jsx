@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 import Markdown from "react-markdown";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,15 @@ function CourseVideoDescription({
   activeChapterIndex,
   watchMode = false,
   setChapterCompleted,
+  completedChapter = [],
 }) {
+  useEffect(() => {
+    checkIsChapterCompleted();
+  }, []);
+
+  const checkIsChapterCompleted = (chapterId) => {
+    return completedChapter.find((item) => item.chapterId == chapterId);
+  };
   return (
     <div>
       <h2 className="text-[20px] font-semibold">{courseInfo.name}</h2>
@@ -25,6 +33,13 @@ function CourseVideoDescription({
             <Button
               onClick={() =>
                 setChapterCompleted(courseInfo?.chapter[activeChapterIndex]?.id)
+              }
+              disabled={
+                checkIsChapterCompleted(
+                  courseInfo?.chapter[activeChapterIndex]?.id
+                )
+                  ? true
+                  : false
               }
             >
               Mark Completed

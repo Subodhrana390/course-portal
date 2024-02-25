@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 import CourseItem from "./CourseItem";
 import Link from "next/link";
-import { list } from "postcss";
+
 
 const CourseList = () => {
   const [courseList, setCourseList] = useState([]);
@@ -17,14 +17,19 @@ const CourseList = () => {
 
   useEffect(() => {
     getAllCourses();
-  }, []);
+  }, [selectedFilter]);
 
   const getAllCourses = () => {
     GlobalAPI.getAllCourseList().then((resp) => {
-      setCourseList(resp?.courseLists);
+      selectedFilter == "all"
+        ? setCourseList(resp?.courseLists)
+        : selectedFilter == "paid"
+        ? setCourseList(resp?.courseLists.filter((item) => item.free == false))
+        : setCourseList(resp?.courseLists.filter((item) => item.free == true));
     });
   };
 
+ 
   return (
     <div className="p-5 bg-white rounded-lg mt-3">
       <div className="flex items-center justify-between">

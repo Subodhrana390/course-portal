@@ -8,7 +8,7 @@ function InProgressCourseList({ userEnrolledCourses }) {
         Recent Enrolled Courses
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 mt-3 gap-2">
-        {userEnrolledCourses.map((item, index) => (
+        {userEnrolledCourses?.map((item, index) => (
           <ProgressCourseItem course={item} key={index} />
         ))}
       </div>

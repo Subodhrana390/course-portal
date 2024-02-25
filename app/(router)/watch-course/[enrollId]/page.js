@@ -44,6 +44,7 @@ function WatchCourse({ params }) {
             courseInfo={courseInfo}
             watchMode={true}
             activeChapterIndex={activeChapterIndex}
+            completedChapter={completedChapter}
             setChapterCompleted={(chapterId) => onChapterComplete(chapterId)}
           />
         </div>
