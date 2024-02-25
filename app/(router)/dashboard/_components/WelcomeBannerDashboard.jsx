@@ -3,13 +3,13 @@ import React from "react";
 
 function WelcomeBannerDashboard({ user }) {
   return (
-    <div className="bg-purple-200 rounded-sm p-5 flex gap-5 items-center">
+    <div className="bg-purple-200 rounded-sm p-5 flex gap-5 items-center ">
       <Image
         src="/Banner.png"
-        width={150}
-        height={150}
+        width={100}
+        height={100}
         alt="banner"
-        className="h-auto w-auto"
+        className="h-auto w-auto sm:h-4 sm:w-4"
       />
       <div>
         <h2 className="font-light text-[32px]">
