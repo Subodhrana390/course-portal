@@ -15,8 +15,7 @@ export default function RootLayout({ children }) {
       <UserMemberContext.Provider value={{ isMember, setIsMember }}>
         <html lang="en">
           <head>
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7199918361492779"
-               crossorigin="anonymous"></script>
+           <meta name="google-adsense-account" content="ca-pub-7199918361492779">
           </head>
           <body className={inter.className}>
             {children}
