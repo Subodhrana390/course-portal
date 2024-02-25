@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <UserMemberContext.Provider value={{ isMember, setIsMember }}>
         <html lang="en">
           <head>
-           <meta name="google-adsense-account" content="ca-pub-7199918361492779">
+           <meta name="google-adsense-account" content="ca-pub-7199918361492779"/>
           </head>
           <body className={inter.className}>
             {children}
